@@ -8,11 +8,12 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         try {
-            List<WordFrequency> wordFrequencyList = calculateWorldFrequency(sentence);
+            List<WordFrequency> wordFrequencyList = calculateWordFrequency(sentence);
 
             wordFrequencyList.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
             return buildWordFrequencyResult(wordFrequencyList);
+
         } catch (Exception exception) {
             return "Calculate Error";
         }
@@ -21,19 +22,18 @@ public class WordFrequencyGame {
     private String buildWordFrequencyResult(List<WordFrequency> wordFrequencyList) {
         StringJoiner wordFrequencyResult = new StringJoiner(LINE_FEED);
         for (WordFrequency wordFrequency : wordFrequencyList) {
-            String wordFrequencyLine = buildWorldFrequencyLine(wordFrequency);
-            wordFrequencyResult.add(wordFrequencyLine);
+            wordFrequencyResult.add(buildWordFrequencyLine(wordFrequency));
         }
         return wordFrequencyResult.toString();
     }
 
-    private String buildWorldFrequencyLine(WordFrequency wordFrequency) {
+    private String buildWordFrequencyLine(WordFrequency wordFrequency) {
         return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getCount());
     }
 
-    private List<WordFrequency> calculateWorldFrequency(String sentence) {
+    private List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(SPACE_REGEX));
-        return words.stream().distinct().map(word -> new WordFrequency(word,Collections.frequency(words,word))).collect(Collectors.toList());
+        return words.stream().distinct().map(word -> new WordFrequency(word, Collections.frequency(words, word))).collect(Collectors.toList());
     }
 
 }
