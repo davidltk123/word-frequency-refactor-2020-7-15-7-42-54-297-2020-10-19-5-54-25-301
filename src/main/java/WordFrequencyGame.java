@@ -5,6 +5,7 @@ public class WordFrequencyGame {
 
     private static final String SPACE_REGEX = "\\s+";
     private static final String LINE_FEED = "\n";
+    private static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getResult(String sentence) {
         try {
@@ -15,7 +16,7 @@ public class WordFrequencyGame {
             return buildWordFrequencyResult(wordFrequencyList);
 
         } catch (Exception exception) {
-            return "Calculate Error";
+            return CALCULATE_ERROR;
         }
     }
 
