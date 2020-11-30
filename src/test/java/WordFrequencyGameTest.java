@@ -57,6 +57,6 @@ public class WordFrequencyGameTest {
         //When
         String result = game.getResult(inputStr);
         //Then
-        assertEquals(result, expectResult);
+        assertEquals(expectResult, result);
     }
 }
