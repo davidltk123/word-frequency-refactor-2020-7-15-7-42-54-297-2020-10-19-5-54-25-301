@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +51,14 @@ public class WordFrequencyGameTest {
         String sentence = "the is is";
         String expectResult = "is 2\nthe 1";
         validate_Input_words_process_to_expected_word(sentence, expectResult);
+    }
+
+    @Test
+    public void should_throw_calculate_exception_with_null_input() throws CalculateException {
+        //Given
+        WordFrequencyGame game = new WordFrequencyGame();
+        //Then
+        assertThrows(CalculateException.class, () -> {game.getResult(null);});
     }
 
     private void validate_Input_words_process_to_expected_word(String sentence, String expectResult) throws CalculateException {
