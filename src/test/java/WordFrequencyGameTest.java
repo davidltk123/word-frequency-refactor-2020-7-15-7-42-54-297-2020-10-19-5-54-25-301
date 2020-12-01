@@ -57,8 +57,12 @@ public class WordFrequencyGameTest {
     public void should_throw_calculate_exception_with_null_input() throws CalculateException {
         //Given
         WordFrequencyGame game = new WordFrequencyGame();
+        //When
+        CalculateException calculateException = assertThrows(CalculateException.class, ()-> {
+            game.getResult(null);
+        });
         //Then
-        assertThrows(CalculateException.class, () -> {game.getResult(null);});
+        assertEquals("Calculate Error",calculateException.getMessage());
     }
 
     private void validate_Input_words_process_to_expected_word(String sentence, String expectResult) throws CalculateException {
