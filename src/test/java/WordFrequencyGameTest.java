@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class WordFrequencyGameTest {
 
     @Test
-    public void should_get_the_1_when_input_the() throws CalculateException {
+    public void should_get_the_1_when_input_the() {
         //Given
         String sentence = "the";
         String expectResult = "the 1";
@@ -14,7 +14,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words() throws CalculateException {
+    public void should_process_two_words() {
         //Given
         String sentence = "the is";
         String expectResult = "the 1\nis 1";
@@ -22,7 +22,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words_with_special_spaces() throws CalculateException {
+    public void should_process_two_words_with_special_spaces() {
         //Given
         String sentence = "the      is";
         String expectResult = "the 1\nis 1";
@@ -30,7 +30,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words_with_special_enter() throws CalculateException {
+    public void should_process_two_words_with_special_enter() {
         //Given
         String sentence = "the   \n   is";
         String expectResult = "the 1\nis 1";
@@ -38,7 +38,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_same_words_with_sorted() throws CalculateException {
+    public void should_process_two_same_words_with_sorted() {
         //Given
         String sentence = "the the is";
         String expectResult = "the 2\nis 1";
@@ -46,7 +46,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_sorted_with_count_descending() throws CalculateException {
+    public void should_process_sorted_with_count_descending() {
         //Given
         String sentence = "the is is";
         String expectResult = "is 2\nthe 1";
@@ -54,18 +54,14 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_throw_calculate_exception_with_null_input() throws CalculateException {
+    public void should_return_calcuate_error_with_null_input() {
         //Given
-        WordFrequencyGame game = new WordFrequencyGame();
-        //When
-        CalculateException calculateException = assertThrows(CalculateException.class, ()-> {
-            game.getResult(null);
-        });
-        //Then
-        assertEquals("Calculate Error",calculateException.getMessage());
+        String sentence = null;
+        String expectResult = "Calculate Error";
+        validate_Input_words_process_to_expected_word(sentence, expectResult);
     }
 
-    private void validate_Input_words_process_to_expected_word(String sentence, String expectResult) throws CalculateException {
+    private void validate_Input_words_process_to_expected_word(String sentence, String expectResult) {
         WordFrequencyGame game = new WordFrequencyGame();
         //When
         String actualResult = game.getResult(sentence);
